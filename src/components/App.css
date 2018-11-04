@@ -1,0 +1,22 @@
+body,
+p,
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Proxima Nova', Georgia, sans-serif;
+    background: rgb(24, 24, 24);
+    color: #fff;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.app-container {
+    display: flex;
+    position: relative;
+}
