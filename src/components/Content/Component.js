@@ -38,12 +38,12 @@ class Content extends PureComponent{
 
   next = () => {
     const { current } = this.state;
-    const { questions, location } = this.props;
+    const { questions, history } = this.props;
     if (current !== questions.length - 1){
       const current = this.state.current + 1;
       this.setState({ current });
     } else{
-      location.push('/dynamicForm/success')
+      history.push('/dynamicForm/success')
     }
   };
 

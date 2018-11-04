@@ -8,12 +8,13 @@ class DynamicForm extends PureComponent{
   state = {};
 
   render(){
-    const { payload:{title, questions} } = this.props;
+    const { payload:{title, questions}, history } = this.props;
+    console.log(this.props);
     return(
       <div className="main-section">
         <Form>
           <Header title={title} />
-          <Content questions={questions} />
+          <Content questions={questions} history={history}/>
         </Form>
       </div>
     )

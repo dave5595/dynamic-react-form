@@ -42,7 +42,7 @@ ReactDOM.render(
       <Router>
         <Switch>
           <Route exact path="/" component={App} />
-          <Route exact path="/dynamicForm" render={()=>(<DynamicForm payload={payload}/>)} />
+          <Route exact path="/dynamicForm" render={(props)=>(<DynamicForm payload={payload} {...props}/> )} />
           <Route exact path="/dynamicForm/success" render={(props)=> <QuestionSummary {...props} />}/>
         </Switch>
       </Router>
