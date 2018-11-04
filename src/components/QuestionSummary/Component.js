@@ -1,7 +1,7 @@
 import React from 'react';
 
 const QuestionSummary = () => (
-  <h1>question summary</h1>
+  <h1>Success !</h1>
 );
 
 export default QuestionSummary;

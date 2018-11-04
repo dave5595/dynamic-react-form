@@ -3,6 +3,7 @@ import { Steps, Form } from 'antd';
 import Footer from '../Footer/Component';
 import Question from '../Question/Component';
 import './Content.css';
+import PropTypes from "prop-types";
 
 const Step = Steps.Step;
 //todo: save each form state and display it at the end
@@ -76,5 +77,10 @@ class Content extends PureComponent{
     )
   }
 }
+
+Content.propTypes = {
+  questions: PropTypes.array,
+  form: PropTypes.object
+};
 
 export default Form.create()(Content);
