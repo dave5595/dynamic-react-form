@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Form } from 'antd';
 import Header from "../Header/Component";
-import Content from "../Content/Component";
+import Content from "../Content";
 import PropTypes from "prop-types";
 
 

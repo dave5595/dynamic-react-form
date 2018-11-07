@@ -1,68 +1,76 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent,Component } from 'react';
 import { Steps, Form } from 'antd';
 import Footer from '../Footer/Component';
-import Question from '../Question/Component';
+import Question from '../Question';
 import './Content.css';
 import PropTypes from "prop-types";
 
 const Step = Steps.Step;
+//todo: try to setup redux to save form state and pass it to mapPropsToField to display past question values
 //todo: save each form state and display it at the end
 class Content extends PureComponent{
-  constructor(props) {
-    super(props);
-    this.state = {
-      current: 0,
-    };
-  }
 
   componentDidMount() {
     this.props.form.validateFields();
   }
   
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps){
     // To reset validation for next question.
-    if (this.state.current !== prevState.current){
+    if (this.props.current !== prevProps.current){
+      let i = 0;
       this.props.form.validateFields();
     }
   }
 
   validate = (e) => {
     e.preventDefault();
-    const { form } = this.props;
+    const { form, saveAnswer, answers, current } = this.props;
     form.validateFields((err, values) => {
+      console.log(values);
       if (!err) {
-        console.log('Received values of form: ', values);
-        this.next();
+          saveAnswer(values);
+          this.next();
       }
     });
   };
 
+  containsObject = (prop, list) => {
+    for (let obj in list) {
+      if (obj.hasOwnProperty(prop)){
+        return true
+      }
+    }
+    return false;
+  }
+
   next = () => {
-    const { current } = this.state;
-    const { questions, history } = this.props;
+    const { questions, history, saveAnswer, current, nextQuestion } = this.props;
     if (current !== questions.length - 1){
-      const current = this.state.current + 1;
-      this.setState({ current });
+      nextQuestion();
     } else{
       history.push('/dynamicForm/success')
     }
   };
 
   prev = () => {
-    const current = this.state.current - 1;
-    this.setState({ current });
+    const { previousQuestion } = this.props;
+    previousQuestion();
   };
 
   render(){
-    const { current } = this.state;
-    const { questions, form } = this.props;
+    const { questions, form, current } = this.props;
     return(
       <div className="body">
         <Steps current={current}>
           {questions.map((question, i) => <Step key={question.id} />)}
         </Steps>
         <div className="steps-content">
-          <Question question={questions[current]} number={current + 1} form={form}/>
+          <Question
+            onChange={this.handleFormChange}
+            question={questions[current]}
+            number={current + 1}
+            form={form}
+          />
         </div>
         <div className="steps-action">
          <Footer
@@ -83,4 +91,4 @@ Content.propTypes = {
   form: PropTypes.object
 };
 
-export default Form.create()(Content);
+export default Content;
