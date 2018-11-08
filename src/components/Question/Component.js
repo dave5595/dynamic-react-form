@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Input, Form } from 'antd';
 import PropTypes from 'prop-types';
+import './Question.css';
 
 const TextArea = Input.TextArea;
 const FormItem = Form.Item;
@@ -34,7 +35,7 @@ class Question extends PureComponent{
                 { required: is_required, message: 'This question is required' },
                 { min: min_char_length, message: `Minimum character length has to be more than ${min_char_length}`}
               ],
-            })(<TextArea autosize={{ minRows: 3, maxRows: 5}} onChange={handleInputChange}/>)
+            })(<TextArea autosize={{ minRows: 5, maxRows: 9}} onChange={handleInputChange}/>)
           }
       </FormItem>
       )
@@ -42,10 +43,15 @@ class Question extends PureComponent{
   };
 
   render(){
-    const { prompt } = this.props.question;
+    const { question: {prompt}, question } = this.props;
     return(
       <div>
-        <h1>{prompt}</h1>
+        <h2 className="question">{prompt}</h2>
+        {
+          question.is_required ? (
+            <p>*required</p>
+          ): null
+        }
         {this.renderInput()}
       </div>
     )

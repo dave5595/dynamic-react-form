@@ -3,10 +3,20 @@ const INITIAL_STATE = { answers: [], current: 0};
 export const questionReducer = (state = INITIAL_STATE, action) => {
   switch (action.type){
     case SAVE_ANSWER:
+      const questionNumber = Object.keys(action.answer)[0];
+      if(hasAlreadyAnswered(state.answers, questionNumber)){
+        // perform immutable updates to the answer array
+        const updatedAnswers = updateAnswer(state.answers, questionNumber, action.answer);
+        return{
+          ...state,
+          answers: updatedAnswers
+        }
+      }else {
         return {
           ...state,
-          answers: [ ...state.answers, action.answer]
+          answers: [...state.answers, action.answer]
         };
+      }
     case INCREMENT_CURRENT:
       return{
         ...state,
@@ -31,6 +41,12 @@ const hasAlreadyAnswered = (arr, prop) => {
   }
   return false
 };
+
+const updateAnswer = (answers, questionNumber, updatedAnswer) => {
+  return answers.map(answer => answer.hasOwnProperty(questionNumber) && updatedAnswer !== answer ? updatedAnswer : answer);
+};
+
+
 
 
 

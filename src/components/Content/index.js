@@ -22,7 +22,4 @@ export default connect(mapStateToProps, { saveAnswer, nextQuestion, previousQues
     console.log(propsObj)
     return propsObj;
   },
-  // onFieldsChange(props, fields) {
-  //
-  // },
 })(Content));

@@ -6,8 +6,7 @@ import './Content.css';
 import PropTypes from "prop-types";
 
 const Step = Steps.Step;
-//todo: try to setup redux to save form state and pass it to mapPropsToField to display past question values
-//todo: save each form state and display it at the end
+
 class Content extends PureComponent{
 
   componentDidMount() {
@@ -26,22 +25,12 @@ class Content extends PureComponent{
     e.preventDefault();
     const { form, saveAnswer, answers, current } = this.props;
     form.validateFields((err, values) => {
-      console.log(values);
       if (!err) {
           saveAnswer(values);
           this.next();
       }
     });
   };
-
-  containsObject = (prop, list) => {
-    for (let obj in list) {
-      if (obj.hasOwnProperty(prop)){
-        return true
-      }
-    }
-    return false;
-  }
 
   next = () => {
     const { questions, history, saveAnswer, current, nextQuestion } = this.props;
@@ -66,7 +55,6 @@ class Content extends PureComponent{
         </Steps>
         <div className="steps-content">
           <Question
-            onChange={this.handleFormChange}
             question={questions[current]}
             number={current + 1}
             form={form}
@@ -74,11 +62,11 @@ class Content extends PureComponent{
         </div>
         <div className="steps-action">
          <Footer
-          form={form}
-          questions={questions}
-          current={current}
-          next={this.validate}
-          prev={this.prev}
+            form={form}
+            questions={questions}
+            current={current}
+            next={this.validate}
+            prev={this.prev}
          />
         </div>
       </div>

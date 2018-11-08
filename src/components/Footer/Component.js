@@ -15,12 +15,19 @@ class Footer extends PureComponent {
     const { questions, current, prev, next, form:{getFieldsError} } = this.props;
     return(
       <footer className="footer">
-         <Button disabled={current === 0} onClick={prev}>Previous</Button>
+         <Button
+           className="navigation-btn"
+           size="large"
+           disabled={current === 0}
+           onClick={prev}>
+           Previous
+         </Button>
           <Button
+            className="navigation-btn"
             htmlType="submit"
+            size="large"
             disabled={this.hasErrors(getFieldsError())}
             style={{ marginLeft: 8 }}
-            type="primary"
             onClick={next}>
             Next
           </Button>

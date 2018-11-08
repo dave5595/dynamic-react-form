@@ -9,10 +9,14 @@
     background-color: #fafafa;
     min-height: 200px;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 10px;
 }
 
 .steps-action {
     margin-top: 24px;
     text-align: center;
+}
+
+.ant-steps{
+    display: inline-flex!important;
 }

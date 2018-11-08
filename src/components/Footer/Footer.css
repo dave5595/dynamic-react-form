@@ -6,3 +6,11 @@
     margin: 10px 100px;
     display: inline-block;
 }
+
+.navigation-btn{
+    display: inline-block;
+    width: 120px;
+    border-radius: 40px 40px 40px 40px!important;
+    background-color: #1890ff;
+    color: #ffffff;
+}

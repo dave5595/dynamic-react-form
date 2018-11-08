@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 class DynamicForm extends PureComponent{
   render(){
     const { payload:{title, questions}, history } = this.props;
-    console.log(this.props);
     return(
       <div className="main-section">
         <Form>
