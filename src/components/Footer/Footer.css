@@ -9,8 +9,16 @@
 
 .navigation-btn{
     display: inline-block;
-    width: 120px;
+    width: 100px!important;
     border-radius: 40px 40px 40px 40px!important;
     background-color: #1890ff;
     color: #ffffff;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
 }

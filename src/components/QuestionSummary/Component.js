@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import './QuestionSummary.css';
 import QuestionSummaryLabel from '../QuestionSummaryLabel/Component';
@@ -8,26 +9,38 @@ const renderQuestionSummary = (questions, answers) => {
   return questions.map((question, index) => {
     return(
       <div className="question-summary">
-        <QuestionSummaryLabel question={question.prompt} answer={answers[index][`question${index + 1}`]}/>
+        <QuestionSummaryLabel
+          question={question.prompt}
+          answer={answers[index][`question${index + 1}`]}
+          questionClassName="question-summary-text"
+        />
       </div>
     )
   });
 };
 
-const QuestionSummary = ({ questions, answers }) => (
+const QuestionSummary = ({ questions, answers, history }) => (
     <div className="container">
       <div className="header">
         {
           answers.length > 0 ?(
-            <h1>Success !</h1>
+            <h1 className="question-summary-header success">Success !</h1>
           ) :(
-            <h1>Uh-oh..</h1>
+            <h1 className="question-summary-header">Uh-oh..</h1>
           )
         }
       </div>
 
       <div className="question-summary-content">
         {renderQuestionSummary(questions, answers)}
+      </div>
+      <div>
+        <Button
+          className="navigation-btn"
+          size="large"
+          onClick={history.goBack}>
+          Previous
+        </Button>
       </div>
     </div>
 );

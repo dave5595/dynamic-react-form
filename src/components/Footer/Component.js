@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Form } from 'antd';
 import './Footer.css';
-import Question from "../Question/Component";
 import PropTypes from "prop-types";
 
 class Footer extends PureComponent {
@@ -16,14 +14,14 @@ class Footer extends PureComponent {
     return(
       <footer className="footer">
          <Button
-           className="navigation-btn"
+           className="navigation-btn left"
            size="large"
            disabled={current === 0}
            onClick={prev}>
            Previous
          </Button>
           <Button
-            className="navigation-btn"
+            className="navigation-btn right"
             htmlType="submit"
             size="large"
             disabled={this.hasErrors(getFieldsError())}
