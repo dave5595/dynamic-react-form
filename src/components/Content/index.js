@@ -19,7 +19,6 @@ export default connect(mapStateToProps, { saveAnswer, nextQuestion, previousQues
         accumulator = {...accumulator, [questionNum] : Form.createFormField({value: value})};
         return accumulator
     },{});
-    console.log(propsObj)
     return propsObj;
   },
 })(Content));
